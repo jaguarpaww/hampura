@@ -1,0 +1,30 @@
+<?php
+$db=mysqli_connect("localhost","root","","transaksi");
+$query=mysqli_query($db,"SELECT * FROM barang");
+?>
+INVENTORY KETERSEDIAAN STOK TANAMAN<br>
+<table border="1px" cellpadding="10" cellspacing="0">
+	<tr>
+		<th>KODE BARANG</th>
+		<th>NAMA BARANG</th>
+		<th>STOK BARANG</th>
+		<th>SATUAN BARANG</th>
+		<th>HARGA BARANG</th>
+		<th>AKSI</th>
+	</tr>
+	<?php while($row=mysqli_fetch_assoc($query)) : ?>
+	<tr>
+		<td><?php echo $row['kode_brg']; ?></td>
+		<td><?php echo $row['nama_brg']; ?></td>
+		<td><?php echo $row['stok']; ?></td>
+		<td><?php echo $row['satuan']; ?></td>
+		<td><?php echo $row['harga']; ?></td>
+		<td><a href="ubah.php?kode_brg=<?php echo $row['kode_brg']?>">UBAH</a> ||
+			<a href="delete.php?kode_brg=<?php echo $row['kode_brg']?>">HAPUS</a></td>
+			
+	</tr>
+	<?php endwhile; ?>
+</table>
+<br>
+<a href="tambah.php">Tambah Data</a>	
+<a href="logout.php">Logout</a><br/>
